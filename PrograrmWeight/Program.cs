@@ -11,51 +11,58 @@ namespace PrograrmWeight
             string gender = "";
             int height = 0;
             int weight = 0;
+            bool notNum;
+
             Console.WriteLine("Hello, World!");
             Console.WriteLine();
-
-            do
+            
+            do //รับชื่อ
                {
                    Console.Write("input your name : ");
                    name = Console.ReadLine();
                    if (string.IsNullOrWhiteSpace(name))
                    {
-                       Console.WriteLine("Error");
+                       Console.WriteLine("Try again");
                    }
                    else if (name.Length < 3)
                    {
-                    Console.WriteLine("Error");
-                }
+                    Console.WriteLine("Try again");
+                   }
 
             } while (string.IsNullOrWhiteSpace(name) || name.Length < 3);
 
-            do
+            do //รับส่วนสูง
             {
-                Console.Write("Please fill you height(cm) : ");
-                height = Convert.ToInt16(Console.ReadLine());
+                Console.Write("\nPlease fill you height(cm) : ");
+                string input = Console.ReadLine();
+                notNum = int.TryParse(input, out height);
                 if (height <= 30 || height >= 220)
+                {
+                    Console.WriteLine("Error height(cm)");
+                }
+                else if (!notNum)
                 {
                     Console.WriteLine("Error height(cm)");
                 }
 
             } while (height <= 30 || height >= 220);
 
-            do
+            do //รับเพศ
             {
                 Console.Write("\nPlease input your gender M or F: ");
                 gender = Console.ReadLine();
-                if (gender != "M" || gender != "F")
+                if (gender != "M" && gender != "F" && gender != "m" && gender != "f")
                 {
                     Console.WriteLine("Please input M or F: ");
                 }
 
             } while (gender != "M" && gender != "F" && gender != "m" && gender != "f");
 
-            if (gender == "M")
+            if (gender == "M" || gender == "m")
             {
                 weight = height - 100;
             }
-            else if (gender == "F")
+            else if (gender == "F" || gender == "f")
             {
                 weight = height - 110;
             }
